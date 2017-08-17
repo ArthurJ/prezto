@@ -1,13 +1,125 @@
-#
-# Executes commands at the start of an interactive session.
-#
-# Authors:
-#   Sorin Ionescu <sorin.ionescu@gmail.com>
-#
-
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
 # Customize to your needs...
+autoload -Uz promptinit
+promptinit
+prompt agnoster
+
+HISTFILE=~/.history
+HISTSIZE=1000000
+SAVEHIST=1000000
+
+setopt appendhistory extendedglob nomatch notify hist_ignore_all_dups interactivecomments
+setopt inc_append_history
+setopt share_history
+setopt extended_history
+
+#If we have a glob this will expand it
+setopt GLOB_COMPLETE
+setopt PUSHD_MINUS
+
+zstyle ':completion:*' completer _expand _complete _ignored _correct #_approximate
+zstyle ':completion:*' completions 1
+zstyle ':completion:*' file-sort name
+zstyle ':completion:*' glob 1
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' insert-unambiguous true
+zstyle ':completion:*' list-colors ''
+zstyle ':completion:*' list-suffixes true
+zstyle ':completion:*' matcher-list '+' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:]}={[:upper:]}' 'r:|[._-]=* r:|=* l:|=*'
+zstyle ':completion:*' max-errors 2
+zstyle ':completion:*' menu select=long-list select=5
+zstyle ':completion:*' original true
+zstyle ':completion:*' preserve-prefix '//[^/]##/'
+zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
+zstyle ':completion:*' squeeze-slashes true
+zstyle ':completion:*' list-prompt %SAt %p: Aperte TAB para mais, ou o caractere à acrescentar%s
+# zstyle ':completion:*' substitute 1
+zstyle :compinstall filename '/home/arthur/.zshrc'
+
+autoload -Uz compinit
+compinit
+
+bindkey ';5D' backward-word
+bindkey ';5C' forward-word
+bindkey '\eOH' beginning-of-line
+bindkey '\eOF' end-of-line
+bindkey -M emacs '^[[3;5~' kill-word
+
+# bindkeys do Leone
+# Incremental search is elite!
+bindkey -M vicmd "/" history-incremental-search-backward
+bindkey -M vicmd "?" history-incremental-search-forward
+
+# Search based on what you typed in already
+bindkey -M vicmd "//" history-beginning-search-backward
+bindkey -M vicmd "??" history-beginning-search-forward
+
+#bindkey -M vicmd "q" push-line
+#bindkey -M viins ' ' magic-space
+
+#POWERLINE
+#source /usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
+
+alias ccat='pygmentize -g '
+alias find='noglob find'
+alias sudo='noglob sudo'
+alias mv='nocorrect mv'       # no spelling correction on mv
+alias cp='nocorrect cp'       # no spelling correction on cp
+alias cd..='cd ..'
+alias mkdir='nocorrect mkdir' # no spelling correction on mkdir
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+alias ll='ls -lah --color'
+alias rm='trash'
+alias cb='xclip -selection clipboard'
+#alias vimdiff='nvim -d'
+#alias gvim='function _gvim(){gnome-terminal -e "nvim $@"};_gvim'
+
+# Alias do Leone
+alias pipu2="pip2 freeze --local | cut -d = -f 1  | xargs -n1 pip2 install -U"
+alias pipu3="pip3 freeze --local | cut -d = -f 1  | xargs -n1 pip3 install -U"
+alias noaccent='iconv -t ASCII//TRANSLIT | sed "s/[\"\''~^]//g"'
+alias spaces="sed 's/./\0 /g'"
+alias chartohex="echo \"Ex.: \$ printf '%x' \\\"'A'\\\"\""
+alias hextochar="echo \"Ex.: \$ echo '41' | xxd -p -r\""
+# alias vmup="VBoxManage startvm --type headless"
+
+# Calcula entropia de uma string
+alias ent="ent | head -1 | awk '{print \$3}'"
+
+
+if [ -f ~/.bash_env_config ]; then
+    . ~/.bash_env_config
+fi
+
+export STUFF="$HOME/Stuff"
+
+export ANACONDA_HOME="$STUFF/anaconda3"
+
+export PYSPARK_PYTHON="$ANACONDA_HOME/bin/python3"
+export SPARK_HOME="$STUFF/spark-2.1.1-bin-hadoop2.7"
+export PYSPARK_DRIVER_PYTHON="$ANACONDA_HOME/bin/jupyter"
+export PYSPARK_DRIVER_PYTHON_OPTS='notebook'
+# export PYSPARK_DRIVER_PYTHON="$ANACONDA_HOME/bin/ipython3"
+
+export JAVA_HOME="$STUFF/jdk1.8.0_131"
+export LEIN_HOME="$STUFF"
+export GOROOT="$STUFF/go"
+export GOPATH="$STUFF/gopath"
+
+export PATH="$PATH:$HOME/.local/bin:$SPARK_HOME/bin:$JAVA_HOME/bin:$LEIN_HOME/bin"
+export PATH="$PATH:$GOROOT/bin:$GOPATH/bin:$HADOOP_HOME/bin"#:$ANACONDA_HOME/bin
+
+export HADOOP_HOME="$STUFF/hadoop-2.8.0"
+export HADOOP_MAPRED_HOME=$HADOOP_HOME
+export HADOOP_COMMON_HOME=$HADOOP_HOME
+export HADOOP_HDFS_HOME=$HADOOP_HOME
+export YARN_HOME=$HADOOP_HOME
+export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native
+export PATH=$PATH:$HADOOP_HOME/sbin:$HADOOP_HOME/bin
+export HADOOP_INSTALL=$HADOOP_HOME
