@@ -49,21 +49,13 @@ bindkey '\eOH' beginning-of-line
 bindkey '\eOF' end-of-line
 bindkey -M emacs '^[[3;5~' kill-word
 
-# bindkeys do Leone
-# Incremental search is elite!
-bindkey -M vicmd "/" history-incremental-search-backward
-bindkey -M vicmd "?" history-incremental-search-forward
-
-# Search based on what you typed in already
-bindkey -M vicmd "//" history-beginning-search-backward
-bindkey -M vicmd "??" history-beginning-search-forward
-
-#bindkey -M vicmd "q" push-line
 #bindkey -M viins ' ' magic-space
 
 #POWERLINE
 #source /usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
 
+alias less='less -MN '
+alias -g gp='| grep -i '
 alias ccat='pygmentize -g '
 alias find='noglob find'
 alias sudo='noglob sudo'
@@ -103,8 +95,8 @@ export ANACONDA_HOME="$STUFF/anaconda3"
 
 export PYSPARK_PYTHON="$ANACONDA_HOME/bin/python3"
 export SPARK_HOME="$STUFF/spark-2.1.1-bin-hadoop2.7"
-export PYSPARK_DRIVER_PYTHON="$ANACONDA_HOME/bin/jupyter"
-export PYSPARK_DRIVER_PYTHON_OPTS='notebook'
+# export PYSPARK_DRIVER_PYTHON="$ANACONDA_HOME/bin/jupyter"
+# export PYSPARK_DRIVER_PYTHON_OPTS='notebook'
 # export PYSPARK_DRIVER_PYTHON="$ANACONDA_HOME/bin/ipython3"
 
 export JAVA_HOME="$STUFF/jdk1.8.0_131"
