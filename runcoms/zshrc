@@ -69,8 +69,8 @@ alias egrep='egrep --color=auto'
 alias ll='ls -lah --color'
 alias rm='trash'
 alias cb='xclip -selection clipboard'
-#alias vimdiff='nvim -d'
-#alias gvim='function _gvim(){gnome-terminal -e "nvim $@"};_gvim'
+alias vimdiff='nvim -d'
+alias gvim='function _gvim(){gnome-terminal -e "nvim $@"};_gvim'
 
 # Alias do Leone
 alias pipu2="pip2 freeze --local | cut -d = -f 1  | xargs -n1 pip2 install -U"
@@ -94,18 +94,12 @@ export STUFF="$HOME/Stuff"
 export ANACONDA_HOME="$STUFF/anaconda3"
 
 export PYSPARK_PYTHON="$ANACONDA_HOME/bin/python3"
-export SPARK_HOME="$STUFF/spark-2.1.1-bin-hadoop2.7"
+export SPARK_HOME="$STUFF/spark-2.3.1-bin-hadoop2.7"
 # export PYSPARK_DRIVER_PYTHON="$ANACONDA_HOME/bin/jupyter"
 # export PYSPARK_DRIVER_PYTHON_OPTS='notebook'
 # export PYSPARK_DRIVER_PYTHON="$ANACONDA_HOME/bin/ipython3"
 
 export JAVA_HOME="$STUFF/jdk1.8.0_131"
-export LEIN_HOME="$STUFF"
-export GOROOT="$STUFF/go"
-export GOPATH="$STUFF/gopath"
-
-export PATH="$PATH:$HOME/.local/bin:$SPARK_HOME/bin:$JAVA_HOME/bin:$LEIN_HOME/bin"
-export PATH="$PATH:$GOROOT/bin:$GOPATH/bin:$HADOOP_HOME/bin"#:$ANACONDA_HOME/bin
 
 export HADOOP_HOME="$STUFF/hadoop-2.8.0"
 export HADOOP_MAPRED_HOME=$HADOOP_HOME
@@ -113,5 +107,13 @@ export HADOOP_COMMON_HOME=$HADOOP_HOME
 export HADOOP_HDFS_HOME=$HADOOP_HOME
 export YARN_HOME=$HADOOP_HOME
 export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native
-export PATH=$PATH:$HADOOP_HOME/sbin:$HADOOP_HOME/bin
 export HADOOP_INSTALL=$HADOOP_HOME
+
+
+export PATH=$PATH:$HOME/.local/bin
+export PATH=$PATH:$SPARK_HOME/bin
+export PATH=$PATH:$JAVA_HOME/bin
+export PATH=$PATH:$HADOOP_HOME/bin
+export PATH=$PATH:$HADOOP_HOME/sbin
+#export PATH=$PATH:$ANACONDA_HOME/bin
+
