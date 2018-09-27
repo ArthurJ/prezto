@@ -71,6 +71,8 @@ alias rm='trash'
 alias cb='xclip -selection clipboard'
 alias vimdiff='nvim -d'
 alias gvim='function _gvim(){gnome-terminal -e "nvim $@"};_gvim'
+alias trim='sed "s/[ \t]*//;s/[ \t]*$//"'
+
 
 # Alias do Leone
 alias pipu2="pip2 freeze --local | cut -d = -f 1  | xargs -n1 pip2 install -U"
