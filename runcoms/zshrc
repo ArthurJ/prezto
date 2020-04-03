@@ -1,3 +1,9 @@
+RPROMPT='[%D{%Hh%M:$S}]'
+TMOUT=1
+TRAPALARM(){
+  zle reset-prompt
+}
+
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
